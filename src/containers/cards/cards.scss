@@ -1,0 +1,9 @@
+@import "../../variables.scss";
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: $card-width;
+    height: $card-height;
+}
