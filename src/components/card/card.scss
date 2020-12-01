@@ -1,0 +1,19 @@
+@import "../../variables.scss";
+
+.card {
+    width: $card-width;
+    height: $card-height;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(353deg, #b3b3b3 0%, #dedede 38%, #f8f8f8 100%);
+    border-radius: 10px;
+    transform: perspective(500px) rotateX(-20deg);
+    position: absolute;
+}
+
+$cardsCount: 15;
+@for $i from 0 to $cardsCount {
+    .card:nth-child(#{$i + 1}) {
+        transform: perspective(500px) rotateX(-20deg - 3 * $i);
+        top: 50px * $i;
+    }
+}
