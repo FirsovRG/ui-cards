@@ -8,12 +8,7 @@
     border-radius: 15px;
     position: absolute;
     overflow: visible;
-
-    // &_isActive {
-    // animation-duration: 1s;
-    // animation-delay: 0.5s;
-    // animation-fill-mode: forwards;
-    // }
+    cursor: pointer;
 }
 
 $cardsCount: 15;
@@ -40,41 +35,16 @@ $cardsCount: 15;
                 transform: perspective(600px) rotateX($cardRotateX) scale($cardScale) translateY(-15px);
             }
             &.card_isActive {
-                // transform: perspective(0) rotateX(0) translateY(0px) scale(1.5);
-                // z-index: 99;
-                // top: 0;
-                animation-name: card-active-#{$i};
-                animation-duration: 1s;
                 transform: perspective(600px) rotateX(0) scale($cardActiveScale) translateY($cardActiveTranslateY);
                 filter: drop-shadow(30px 40px 25px rgba(0, 0, 0, 0.3));
             }
-        }
-        @keyframes card-active {
-            0% {
-                // transform: perspective(600px) rotateX($cardRotateX) scale($cardScale) translateY(-15px);
-                // z-index: $i;
-                // transform: perspective(600px) rotateX(-20deg - 9 * $i) scale(1 + $i * 2 / 100) translateY(-15px);
-                // transform: perspective(600px) rotateX(0) scale(1 + $i * 5 / 100) translateY(-300px + 20 * $i);
-            }
 
-            50% {
-                transform: perspective(600px) rotateX(0) scale($cardActiveScale) translateY($cardActiveTranslateY);
-                z-index: $i;
-                // transform: perspective(600px) rotateX(0) scale(1 + $i * 5 / 100) translateY(-300px + 20 * $i);
-                // filter: drop-shadow(30px 40px 25px rgba(0, 0, 0, 0.3));
-            }
-
-            100% {
+            &.card_isFocused {
                 transform: perspective(0) rotateX(0) translateY(0px) scale(1.5);
                 z-index: 99;
                 top: 0;
+                cursor: default;
             }
         }
-    }
-
-    .inner {
-        width: 100%;
-        height: 100%;
-        transition: transform 0.5s 0.5s;
     }
 }
