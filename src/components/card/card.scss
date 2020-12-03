@@ -1,19 +1,80 @@
 @import "../../variables.scss";
+@import "../../functions.scss";
 
 .card {
     width: $card-width;
     height: $card-height;
-    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
     background: linear-gradient(353deg, #b3b3b3 0%, #dedede 38%, #f8f8f8 100%);
-    border-radius: 10px;
-    transform: perspective(500px) rotateX(-20deg);
+    border-radius: 15px;
     position: absolute;
+    overflow: visible;
+
+    // &_isActive {
+    // animation-duration: 1s;
+    // animation-delay: 0.5s;
+    // animation-fill-mode: forwards;
+    // }
 }
 
 $cardsCount: 15;
 @for $i from 0 to $cardsCount {
-    .card:nth-child(#{$i + 1}) {
-        transform: perspective(500px) rotateX(-20deg - 3 * $i);
-        top: 50px * $i;
+    $cardShadowYOffset: -5px - $i * 3;
+    $cardRotateX: -20deg - 9 * $i;
+    $cardScale: 1 + $i * 2 / 100;
+    $cardTop: 20px * $i + pow($i, 2) * 2px;
+    $cardActiveScale: 1 + $i * 5 / 100;
+    $cardActiveTranslateY: -300px + 20px * $i;
+
+    .card {
+        &:nth-child(#{$i + 1}) {
+            @if $i == 0 {
+                filter: drop-shadow(20px 20px 6px rgba(0, 0, 0, 0.3));
+            } @else {
+                filter: drop-shadow(20px $cardShadowYOffset 6px rgba(0, 0, 0, 0.3));
+            }
+            transform: perspective(600px) rotateX($cardRotateX) scale($cardScale);
+            top: $cardTop;
+            transition: 0.5s;
+            z-index: $i;
+            &:hover {
+                transform: perspective(600px) rotateX($cardRotateX) scale($cardScale) translateY(-15px);
+            }
+            &.card_isActive {
+                // transform: perspective(0) rotateX(0) translateY(0px) scale(1.5);
+                // z-index: 99;
+                // top: 0;
+                animation-name: card-active-#{$i};
+                animation-duration: 1s;
+                transform: perspective(600px) rotateX(0) scale($cardActiveScale) translateY($cardActiveTranslateY);
+                filter: drop-shadow(30px 40px 25px rgba(0, 0, 0, 0.3));
+            }
+        }
+        @keyframes card-active {
+            0% {
+                // transform: perspective(600px) rotateX($cardRotateX) scale($cardScale) translateY(-15px);
+                // z-index: $i;
+                // transform: perspective(600px) rotateX(-20deg - 9 * $i) scale(1 + $i * 2 / 100) translateY(-15px);
+                // transform: perspective(600px) rotateX(0) scale(1 + $i * 5 / 100) translateY(-300px + 20 * $i);
+            }
+
+            50% {
+                transform: perspective(600px) rotateX(0) scale($cardActiveScale) translateY($cardActiveTranslateY);
+                z-index: $i;
+                // transform: perspective(600px) rotateX(0) scale(1 + $i * 5 / 100) translateY(-300px + 20 * $i);
+                // filter: drop-shadow(30px 40px 25px rgba(0, 0, 0, 0.3));
+            }
+
+            100% {
+                transform: perspective(0) rotateX(0) translateY(0px) scale(1.5);
+                z-index: 99;
+                top: 0;
+            }
+        }
+    }
+
+    .inner {
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s 0.5s;
     }
 }
