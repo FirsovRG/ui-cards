@@ -1,0 +1,87 @@
+.hintLayer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    display: flex;
+    justify-content: flex-end;
+    transition: 3s;
+
+    &-whitespace {
+        position: relative;
+        top: -200px;
+        right: -200px;
+        width: 400px;
+        height: 400px;
+        background-color: transparent;
+        box-shadow: 0 0 0px 2000px rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        transition: 0.2s;
+        transition-timing-function: ease-in;
+        opacity: 0;
+
+        &_mountState_enter-done {
+            opacity: 1;
+        }
+    }
+
+    &-hint {
+        display: flex;
+        flex-direction: column;
+        z-index: 100;
+        transition: opacity 0.5s 1s;
+        opacity: 0;
+        position: relative;
+        top: 70px;
+        right: -200px;
+
+        &_mountState_enter-done {
+            opacity: 1;
+        }
+    }
+
+    &-text {
+        color: #ffffff;
+        font-weight: 100;
+        font-size: 24px;
+    }
+
+    & svg {
+        transform: rotatez(145deg) scale(0.35);
+        position: relative;
+        top: -180px;
+        right: -150px;
+
+        path {
+            fill: #ffffff;
+        }
+    }
+
+    &-buttonWrapper {
+        position: relative;
+        top: -300px;
+        align-self: center;
+        opacity: 0;
+        transition: opacity 0.5s 2s;
+        &_mountState_enter-done {
+            opacity: 1;
+        }
+    }
+
+    &-skipButton {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: #ffffff;
+        font-size: 20px;
+        cursor: pointer;
+        width: fit-content;
+        transition: opacity 0.5s;
+        padding: 0;
+        opacity: 0.3;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
