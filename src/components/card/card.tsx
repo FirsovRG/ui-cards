@@ -1,37 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { cn } from "@bem-react/classname";
 
 import { ICard } from "./types";
+import UpArrow from "./up-arrow";
 
 import "./card.scss";
 
 const card = cn("card");
 
-const Card: React.FC<ICard> = ({ isActive, setActive, reference }) => {
-    const [isFocused, setIsFocused] = useState(false);
-    const [modificators, setModificators] = useState({ isActive: false, isFocused: false });
-
-    useEffect(() => {
-        if (!isActive && modificators.isFocused) {
-            setModificators({ isActive: true, isFocused: false });
-            setTimeout(() => setModificators({ isActive: false, isFocused: false }), 500);
-            return;
-        }
-        setModificators({ ...modificators, isActive });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isActive]);
-
-    const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        e.stopPropagation();
+const Card: React.FC<ICard> = React.memo(({ isActive, setActive, isFocused, setFocused, reference }) => {
+    const handleCardClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation();
         if (isActive) {
-            // setIsFocused(true);
-            setModificators({ ...modificators, isFocused: true });
+            if (isFocused) {
+                return;
+            }
+            setFocused();
             return;
         }
         setActive();
     };
 
-    return <div ref={reference} className={card(modificators)} onClick={handleCardClick} aria-hidden="true" />;
-};
+    const handleUpArrowClick = () => {
+        setFocused();
+        setTimeout(() => setActive(), 500);
+    };
+
+    return (
+        <div ref={reference} className={card({ isActive, isFocused })} onClick={handleCardClick} aria-hidden="true">
+            {isFocused && (
+                <button type="button" onClick={handleUpArrowClick} className={card("button")}>
+                    <UpArrow />
+                </button>
+            )}
+        </div>
+    );
+});
 
 export default Card;
