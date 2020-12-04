@@ -1,10 +1,11 @@
 import React from "react";
-import Card from "src/components/card";
+
 import Layout from "src/components/layout";
+import Cards from "../cards";
 
 const App: React.FC = () => (
     <Layout>
-        <Card />
+        <Cards cardsCount={6} />
     </Layout>
 );
 
