@@ -1,0 +1,21 @@
+.zoomHint {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 150px;
+    opacity: 0;
+    transition: opacity 0.5s 3s;
+    &_isVisible {
+        opacity: 1;
+    }
+    & svg {
+        height: 100px;
+        transform: translateY(20px) translateX(-100px);
+
+        path {
+            fill: #a5a5a5;
+        }
+    }
+}

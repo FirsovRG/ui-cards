@@ -9,10 +9,11 @@ import "./header.scss";
 
 const header = cn("header");
 
-const Header: React.FC<IHeader> = ({ onHintButtonClick }) => {
+const Header: React.FC<IHeader> = ({ onHintButtonClick, isHintsEnabled }) => {
     const [showHintLayer, setShowHintLayer] = useState(true);
 
-    const handleHintButtonClick = () => {
+    const handleHintButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
         setShowHintLayer(false);
         onHintButtonClick();
     };
@@ -21,7 +22,11 @@ const Header: React.FC<IHeader> = ({ onHintButtonClick }) => {
         <>
             <div className={header()}>
                 <h1 className={header("title")}>Card Pocket UI</h1>
-                <button type="button" className={header("hint-button")} onClick={handleHintButtonClick}>
+                <button
+                    type="button"
+                    className={header("hint-button", { hintsEnabled: isHintsEnabled })}
+                    onClick={handleHintButtonClick}
+                >
                     <HintBulbIcon />
                 </button>
             </div>
