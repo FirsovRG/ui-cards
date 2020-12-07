@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "@bem-react/classname";
 
-import UpArrow from "src/components/card/up-arrow";
+import UpArrow from "src/components/icons/up-arrow";
 
 import "./return-back-hint.scss";
 

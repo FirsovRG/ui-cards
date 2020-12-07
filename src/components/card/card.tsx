@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "@bem-react/classname";
 
 import { ICard } from "./types";
-import UpArrow from "./up-arrow";
+import UpArrow from "../icons/up-arrow";
 
 import "./card.scss";
 

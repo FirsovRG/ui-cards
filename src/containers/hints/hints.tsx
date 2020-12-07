@@ -12,13 +12,7 @@ import "./hints.scss";
 
 const hints = cn("hints");
 
-export enum HintStages {
-    initial = "initial-stage",
-    second = "second-stage",
-    last = "last-stage",
-}
-
-const Hints: React.FC<IHints> = ({ children, enabled, haveActive, haveFocused }) => (
+const Hints: React.FC<IHints> = React.memo(({ children, enabled, haveActive, haveFocused }) => (
     <div className={hints()}>
         <div className={hints("top", { enabled: enabled && !haveActive })}>
             <span>
@@ -41,14 +35,14 @@ const Hints: React.FC<IHints> = ({ children, enabled, haveActive, haveFocused })
                         enabled: enabled && haveActive && !haveFocused,
                     })}
                 >
-                    <ZoomHint enabled={haveActive} />
+                    <ZoomHint enabled={enabled && haveActive} />
                 </div>
                 <div
                     className={hints("middle-right-hint", {
                         enabled: enabled && haveActive && !haveFocused,
                     })}
                 >
-                    <OutsideClickHint enabled={haveActive} />
+                    <OutsideClickHint enabled={enabled && haveActive} />
                 </div>
             </div>
         </div>
@@ -56,6 +50,6 @@ const Hints: React.FC<IHints> = ({ children, enabled, haveActive, haveFocused })
             <ReturnBackHint />
         </div>
     </div>
-);
+));
 
 export default Hints;
