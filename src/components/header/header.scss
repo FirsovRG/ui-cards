@@ -28,6 +28,7 @@
 
         & svg {
             transform: scale(1.5);
+
             path {
                 transition: 0.5s;
                 fill: rgba(0, 0, 0, 0.2);
@@ -36,6 +37,7 @@
 
         &_hintsEnabled {
             background-color: #f8f8f8;
+
             & svg {
                 path {
                     fill: rgb(169, 169, 169);

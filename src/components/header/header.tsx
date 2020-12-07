@@ -9,7 +9,7 @@ import "./header.scss";
 
 const header = cn("header");
 
-const Header: React.FC<IHeader> = ({ onHintButtonClick, isHintsEnabled }) => {
+const Header: React.FC<IHeader> = React.memo(({ onHintButtonClick, isHintsEnabled }) => {
     const [showHintLayer, setShowHintLayer] = useState(true);
 
     const handleHintButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -17,6 +17,8 @@ const Header: React.FC<IHeader> = ({ onHintButtonClick, isHintsEnabled }) => {
         setShowHintLayer(false);
         onHintButtonClick();
     };
+
+    const isFirstVisit = localStorage.getItem("isFirstVisit");
 
     return (
         <>
@@ -31,9 +33,12 @@ const Header: React.FC<IHeader> = ({ onHintButtonClick, isHintsEnabled }) => {
                 </button>
             </div>
 
-            <HintLayer onSkipButtonClick={() => setShowHintLayer(false)} shouldAppearOnScreen={showHintLayer} />
+            <HintLayer
+                onSkipButtonClick={() => setShowHintLayer(false)}
+                shouldAppearOnScreen={showHintLayer && isFirstVisit !== "false"}
+            />
         </>
     );
-};
+});
 
 export default Header;

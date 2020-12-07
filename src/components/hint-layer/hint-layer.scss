@@ -63,6 +63,7 @@
         align-self: center;
         opacity: 0;
         transition: opacity 0.5s 2s;
+
         &_mountState_enter-done {
             opacity: 1;
         }

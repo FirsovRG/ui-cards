@@ -1,0 +1,48 @@
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: #000000;
+        font-size: 16px;
+        font-weight: 600;
+        overflow: hidden;
+
+        & svg {
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+
+            path {
+                transition: 0.5s;
+                fill: #eeeeee;
+            }
+        }
+
+        &:hover {
+            .copyright-label {
+                width: 75px;
+            }
+
+            svg {
+                path {
+                    fill: #b3b3b3;
+                }
+            }
+        }
+    }
+
+    &-label {
+        transition: 0.5s;
+        width: 0;
+    }
+
+    &-icon {
+        background-color: white;
+    }
+}

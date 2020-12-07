@@ -8,8 +8,12 @@ import "./hint-layer.scss";
 
 const hintLayer = cn("hintLayer");
 
-const HintLayer: React.FC<IHintLayer> = ({ onSkipButtonClick, shouldAppearOnScreen }) => {
+const HintLayer: React.FC<IHintLayer> = React.memo(({ onSkipButtonClick, shouldAppearOnScreen }) => {
     const [mountState, setMountState] = useState("");
+
+    useEffect(() => {
+        localStorage.setItem("isFirstVisit", "false");
+    }, []);
 
     useEffect(() => {
         if (shouldAppearOnScreen) {
@@ -42,6 +46,6 @@ const HintLayer: React.FC<IHintLayer> = ({ onSkipButtonClick, shouldAppearOnScre
     }
 
     return null;
-};
+});
 
 export default HintLayer;

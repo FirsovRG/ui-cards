@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { cn } from "@bem-react/classname";
 
 import Header from "../header";
+import Footer from "../footer";
 
 import "./layout.scss";
 
@@ -9,7 +10,7 @@ const layout = cn("layout");
 
 export const LayoutHintsContext = React.createContext(false);
 
-const Layout: React.FC = ({ children }) => {
+const Layout: React.FC = React.memo(({ children }) => {
     const [isHintsEnabled, setIsHintsEnabled] = useState(false);
 
     return (
@@ -18,8 +19,9 @@ const Layout: React.FC = ({ children }) => {
             <div className={layout("content")}>
                 <LayoutHintsContext.Provider value={isHintsEnabled}>{children}</LayoutHintsContext.Provider>
             </div>
+            <Footer />
         </div>
     );
-};
+});
 
 export default Layout;
