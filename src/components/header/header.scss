@@ -1,0 +1,56 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 48px 0;
+    padding: 0 48px;
+
+    &-title {
+        font-weight: 100;
+        font-size: 72px;
+        color: rgba(0, 0, 0, 0.2);
+        margin: 0;
+        margin-left: auto;
+    }
+
+    &-hint-button {
+        margin-left: auto;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+        padding: 0;
+        border-radius: 50%;
+        width: 64px;
+        height: 64px;
+        transition: 0.3s;
+        z-index: 100;
+
+        & svg {
+            transform: scale(1.5);
+            path {
+                transition: 0.5s;
+                fill: rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        &_hintsEnabled {
+            background-color: #f8f8f8;
+            & svg {
+                path {
+                    fill: rgb(169, 169, 169);
+                }
+            }
+        }
+
+        &:hover {
+            background-color: #f8f8f8;
+
+            & svg {
+                path {
+                    fill: rgb(169, 169, 169);
+                }
+            }
+        }
+    }
+}

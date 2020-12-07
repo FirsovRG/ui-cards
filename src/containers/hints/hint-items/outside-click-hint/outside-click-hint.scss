@@ -1,0 +1,21 @@
+.outsideClickHint {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.5s 5s;
+    &_isVisible {
+        opacity: 1;
+    }
+    & svg {
+        height: 50px;
+        opacity: 0.3;
+        transform: translateX(-50px) translateY(10px);
+
+        path {
+            fill: #a5a5a5;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+.returnBackHint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-start;
+
+    & svg {
+        margin-bottom: 20px;
+
+        path {
+            fill: #e9e9e9;
+        }
+    }
+}

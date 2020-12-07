@@ -44,7 +44,7 @@
 $cardsCount: 15;
 @for $i from 0 to $cardsCount {
     $cardShadowYOffset: -5px - $i * 3;
-    $cardRotateX: -20deg - 9 * $i;
+    $cardRotateX: -18deg - 9 * $i;
     $cardScale: 1 + $i * 2 / 100;
     $cardTop: 20px * $i + pow($i, 2) * 2px;
     $cardActiveScale: 1 + $i * 5 / 100;
